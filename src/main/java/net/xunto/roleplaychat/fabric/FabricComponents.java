@@ -9,49 +9,53 @@ import net.xunto.roleplaychat.framework.renderer.text.TextComponent;
 
 public class FabricComponents {
 
-    public static Formatting toMinecraftFormatting(TextColor color) {
-        for (Formatting value : Formatting.values()) {
-            if (value.name().equals(color.name())) return value;
+  public static Formatting toMinecraftFormatting(TextColor color) {
+    for (Formatting value : Formatting.values()) {
+        if (value.name().equals(color.name())) {
+            return value;
         }
-
-        return Formatting.WHITE;
     }
 
-    public static MutableText createComponent(String content, TextColor color) {
-        return net.minecraft.text.Text.literal(content).formatted(toMinecraftFormatting(color));
+    return Formatting.WHITE;
+  }
+
+  public static MutableText createComponent(String content, TextColor color) {
+    return net.minecraft.text.Text.literal(content).formatted(toMinecraftFormatting(color));
+  }
+
+  public static net.minecraft.text.Text convertComponent(TextComponent component) {
+    MutableText mcComponent = createComponent(
+        component.getContent(),
+        component.getColor()
+    );
+
+    Text hoverText = component.getHoverText();
+    if (hoverText != null) {
+      mcComponent = mcComponent.setStyle(
+          mcComponent.getStyle().withHoverEvent(
+              new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                  toTextComponent(hoverText)
+              )
+          )
+      );
     }
 
-    public static net.minecraft.text.Text convertComponent(TextComponent component) {
-        MutableText mcComponent = createComponent(
-                component.getContent(),
-                component.getColor()
-        );
+    return mcComponent;
+  }
 
-        Text hoverText = component.getHoverText();
-        if (hoverText != null) {
-            mcComponent = mcComponent.setStyle(
-                    mcComponent.getStyle().withHoverEvent(
-                            new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                                    toTextComponent(hoverText)
-                            )
-                    )
-            );
-        }
+  public static MutableText toTextComponent(Text text) {
+    Object cache = text.getCache();
+      if (cache instanceof MutableText) {
+          return (MutableText) cache;
+      }
 
-        return mcComponent;
+    MutableText result = createComponent("", text.getDefaultColor());
+
+    for (TextComponent component : text.getComponents()) {
+      result.append(convertComponent(component));
     }
 
-    public static MutableText toTextComponent(Text text) {
-        Object cache = text.getCache();
-        if (cache instanceof MutableText) return (MutableText) cache;
-
-        MutableText result = createComponent("", text.getDefaultColor());
-
-        for (TextComponent component : text.getComponents()) {
-            result.append(convertComponent(component));
-        }
-
-        text.setCache(result);
-        return result;
-    }
+    text.setCache(result);
+    return result;
+  }
 }

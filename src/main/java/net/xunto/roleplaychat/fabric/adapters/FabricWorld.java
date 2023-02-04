@@ -6,19 +6,20 @@ import net.xunto.roleplaychat.api.ISpeaker;
 import net.xunto.roleplaychat.api.IWorld;
 
 public class FabricWorld implements IWorld {
-    private final ServerWorld world;
 
-    public FabricWorld(ServerWorld world) {
-        this.world = world;
-    }
+  private final ServerWorld world;
 
-    @Override
-    public IServer getServer() {
-        return new FabricServer(world.getServer());
-    }
+  public FabricWorld(ServerWorld world) {
+    this.world = world;
+  }
 
-    @Override
-    public ISpeaker[] getPlayers() {
-        return world.getPlayers().stream().map(FabricSpeaker::new).toArray(ISpeaker[]::new);
-    }
+  @Override
+  public IServer getServer() {
+    return new FabricServer(world.getServer());
+  }
+
+  @Override
+  public ISpeaker[] getPlayers() {
+    return world.getPlayers().stream().map(FabricSpeaker::new).toArray(ISpeaker[]::new);
+  }
 }
