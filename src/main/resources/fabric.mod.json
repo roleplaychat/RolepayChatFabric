@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "roleplaychat-fabric",
+  "version": "${version}",
+  "name": "Roleplaychat Fabric",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/roleplaychat-fabric/icon.png",
+  "environment": "",
+  "entrypoints": {
+    "main": [
+      "net.xunto.roleplaychat.fabric.RolePlayChatMod"
+    ]
+  },
+  "mixins": [
+    "roleplaychat-fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.13",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}
