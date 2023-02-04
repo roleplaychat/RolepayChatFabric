@@ -32,7 +32,7 @@ public class RolePlayChatMod implements ModInitializer {
                             )
                     );
 
-                    return true;
+                    return false;
                 }
         );
     }
