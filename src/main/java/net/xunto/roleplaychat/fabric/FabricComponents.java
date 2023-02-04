@@ -3,9 +3,9 @@ package net.xunto.roleplaychat.fabric;
 import net.minecraft.text.HoverEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
-import net.xunto.roleplaychat.framework.renderer.text.Text;
-import net.xunto.roleplaychat.framework.renderer.text.TextColor;
-import net.xunto.roleplaychat.framework.renderer.text.TextComponent;
+import net.xunto.roleplaychat.framework.text.Text;
+import net.xunto.roleplaychat.framework.text.TextColor;
+import net.xunto.roleplaychat.framework.text.TextComponent;
 
 public class FabricComponents {
 

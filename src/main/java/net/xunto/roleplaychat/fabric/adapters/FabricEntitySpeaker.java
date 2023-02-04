@@ -4,13 +4,15 @@ import java.util.Objects;
 import java.util.UUID;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.math.BlockPos;
 import net.xunto.roleplaychat.api.ISpeaker;
 import net.xunto.roleplaychat.api.IWorld;
 import net.xunto.roleplaychat.api.Position;
 import net.xunto.roleplaychat.fabric.FabricComponents;
-import net.xunto.roleplaychat.framework.renderer.text.Text;
-import net.xunto.roleplaychat.framework.renderer.text.TextColor;
+import net.xunto.roleplaychat.framework.api.Request;
+import net.xunto.roleplaychat.framework.text.Text;
+
 
 public class FabricEntitySpeaker implements ISpeaker {
 
@@ -18,16 +20,6 @@ public class FabricEntitySpeaker implements ISpeaker {
 
   public FabricEntitySpeaker(Entity entity) {
     this.entity = entity;
-  }
-
-  @Override
-  public void sendMessage(String text, TextColor color) {
-    entity.sendMessage(FabricComponents.createComponent(text, color));
-  }
-
-  @Override
-  public void sendMessage(Text text) {
-    entity.sendMessage(FabricComponents.toTextComponent(text));
   }
 
   @Override
@@ -54,6 +46,11 @@ public class FabricEntitySpeaker implements ISpeaker {
   @Override
   public UUID getUniqueID() {
     return entity.getUuid();
+  }
+
+  @Override
+  public void sendMessage(Request request, Text text) {
+    entity.sendMessage(FabricComponents.toTextComponent(text));
   }
 
   @Override
