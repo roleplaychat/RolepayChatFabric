@@ -11,9 +11,8 @@ repositories {
         name = 'GitHubPackages'
         url = uri('https://maven.pkg.github.com/roleplaychat/RoleplayChatCore')
         credentials {
-            // token only has rights to read published packages
-            username = "tales-pw-worker"
-            password "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"
+            username = project.findProperty('gpr.user') ?: System.getenv('USERNAME')
+            password = project.findProperty('gpr.key') ?: System.getenv('TOKEN')
         }
     }
 }
