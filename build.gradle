@@ -11,8 +11,9 @@ repositories {
         name = 'GitHubPackages'
         url = uri('https://maven.pkg.github.com/roleplaychat/RoleplayChatCore')
         credentials {
-            username = "roleplaychat-worker"
-            password = "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"
+            // token only has rights to read published packages
+            username = "tales-pw-worker"
+            password "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"
         }
     }
 }
