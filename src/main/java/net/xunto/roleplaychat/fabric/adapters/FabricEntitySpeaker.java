@@ -4,7 +4,6 @@ import java.util.Objects;
 import java.util.UUID;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.TextColor;
 import net.minecraft.util.math.BlockPos;
 import net.xunto.roleplaychat.api.ISpeaker;
 import net.xunto.roleplaychat.api.IWorld;
@@ -60,12 +59,12 @@ public class FabricEntitySpeaker implements ISpeaker {
 
   @Override
   public boolean equals(Object o) {
-      if (this == o) {
-          return true;
-      }
-      if (!(o instanceof FabricEntitySpeaker that)) {
-          return false;
-      }
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof FabricEntitySpeaker that)) {
+      return false;
+    }
     return Objects.equals(entity, that.entity);
   }
 

@@ -11,9 +11,9 @@ public class FabricComponents {
 
   public static Formatting toMinecraftFormatting(TextColor color) {
     for (Formatting value : Formatting.values()) {
-        if (value.name().equals(color.name())) {
-            return value;
-        }
+      if (value.name().equals(color.name())) {
+        return value;
+      }
     }
 
     return Formatting.WHITE;
@@ -45,9 +45,9 @@ public class FabricComponents {
 
   public static MutableText toTextComponent(Text text) {
     Object cache = text.getCache();
-      if (cache instanceof MutableText) {
-          return (MutableText) cache;
-      }
+    if (cache instanceof MutableText) {
+      return (MutableText) cache;
+    }
 
     MutableText result = createComponent("", text.getDefaultColor());
 
