@@ -24,23 +24,29 @@ public class FabricComponents {
   }
 
   public static net.minecraft.text.Text convertComponent(TextComponent component) {
+    // Create a MutableText object with the content and color from the input component
     MutableText mcComponent = createComponent(
         component.getContent(),
         component.getColor()
     );
 
+    // Check if there's hover text in the input component
     Text hoverText = component.getHoverText();
     if (hoverText != null) {
-      mcComponent = mcComponent.setStyle(
-          mcComponent.getStyle().withHoverEvent(
-              new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                  toTextComponent(hoverText)
-              )
-          )
-      );
+      mcComponent = addHoverText(mcComponent, hoverText);
     }
 
     return mcComponent;
+  }
+
+  private static MutableText addHoverText(MutableText mcComponent, Text hoverText) {
+    return mcComponent.setStyle(
+        mcComponent.getStyle().withHoverEvent(
+            new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                toTextComponent(hoverText)
+            )
+        )
+    );
   }
 
   public static MutableText toTextComponent(Text text) {
