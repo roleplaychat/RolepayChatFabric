@@ -3,7 +3,6 @@ package net.xunto.roleplaychat.fabric;
 import static net.minecraft.util.registry.BuiltinRegistries.MESSAGE_TYPE;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.minecraft.network.message.MessageType;
 import net.minecraft.text.Decoration;
 import net.minecraft.util.Identifier;
@@ -11,8 +10,6 @@ import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.xunto.roleplaychat.RoleplayChatCore;
-import net.xunto.roleplaychat.fabric.adapters.FabricSpeaker;
-import net.xunto.roleplaychat.fabric.framework.FabricRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,26 +33,8 @@ public class RolePlayChatMod implements ModInitializer {
 
   @Override
   public void onInitialize() {
-    LOGGER.info("Hello Fabric world!");
-
     RoleplayChatCore.instance.warmUpRenderer();
 
     this.registerMessageType();
-
-    ServerMessageEvents.ALLOW_CHAT_MESSAGE.register(
-        (message, sender, typeKey) -> {
-
-          RoleplayChatCore.instance.process(
-              new FabricRequest(
-                  message.getContent().getString(),
-                  new FabricSpeaker(sender),
-                  message,
-                  typeKey
-              )
-          );
-
-          return false;
-        }
-    );
   }
 }
