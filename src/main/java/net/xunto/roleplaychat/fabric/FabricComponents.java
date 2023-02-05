@@ -9,11 +9,18 @@ import net.xunto.roleplaychat.framework.text.TextComponent;
 
 public class FabricComponents {
 
-  public static Formatting toMinecraftFormatting(TextColor color) {
-    for (Formatting value : Formatting.values()) {
-      if (value.name().equals(color.name())) {
-        return value;
-      }
+  /**
+   * Converts a TextColor to its corresponding Formatting in Minecraft.
+   *
+   * @param color The input TextColor to be converted
+   * @return The corresponding Formatting in Minecraft
+   *         If the input color does not have a corresponding Formatting, returns Formatting.WHITE
+   */
+  private static Formatting toMinecraftFormatting(TextColor color) {
+    Formatting formatting = Formatting.byName(color.name());
+
+    if (formatting != null) {
+      return formatting;
     }
 
     return Formatting.WHITE;
