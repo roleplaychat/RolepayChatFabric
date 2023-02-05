@@ -8,7 +8,7 @@
   "contact": {},
   "license": "MIT",
   "icon": "assets/roleplaychat-fabric/icon.png",
-  "environment": "",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "net.xunto.roleplaychat.fabric.RolePlayChatMod"
