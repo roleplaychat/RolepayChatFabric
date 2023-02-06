@@ -5,6 +5,7 @@ import net.xunto.roleplaychat.framework.text.Text;
 import org.slf4j.Logger;
 
 public class FabricLogger implements ILogger {
+
   private final Logger logger;
 
   public FabricLogger(Logger logger) {
