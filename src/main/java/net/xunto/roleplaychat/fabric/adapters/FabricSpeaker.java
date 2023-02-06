@@ -13,6 +13,11 @@ public class FabricSpeaker extends FabricEntitySpeaker {
   }
 
   @Override
+  public boolean hasPermission(String permission) {
+    return player.hasPermissionLevel(2);
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) {
       return true;
