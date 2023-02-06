@@ -1,6 +1,6 @@
 plugins {
-    id 'fabric-loom' version '1.1.8'
-    id 'maven-publish'
+    id "fabric-loom" version "1.1.8"
+    id "maven-publish"
 }
 
 version = project.mod_version
@@ -8,11 +8,14 @@ group = project.maven_group
 
 repositories {
     maven {
-        name = 'GitHubPackages'
-        url = uri('https://maven.pkg.github.com/roleplaychat/RoleplayChatCore')
+        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
+    }
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/roleplaychat/RoleplayChatCore")
         credentials {
-            username = project.findProperty('gpr.user') ?: System.getenv('USERNAME')
-            password = project.findProperty('gpr.key') ?: System.getenv('TOKEN')
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
         }
     }
 }
@@ -23,10 +26,10 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "me.lucko:fabric-permissions-api:0.2-SNAPSHOT"
 
-    implementation "net.xunto.roleplaychat:roleplaychat-core:2.0.0-a2"
+    modImplementation "net.xunto.roleplaychat:roleplaychat-core:2.0.0-a2"
 }
 
 processResources {

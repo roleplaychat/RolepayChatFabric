@@ -1,15 +1,15 @@
 package net.xunto.roleplaychat.fabric.adapters;
 
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
 import net.xunto.roleplaychat.api.IServer;
 import net.xunto.roleplaychat.api.ISpeaker;
 import net.xunto.roleplaychat.api.IWorld;
 
 public class FabricWorld implements IWorld {
 
-  private final ServerWorld world;
+  private final World world;
 
-  public FabricWorld(ServerWorld world) {
+  public FabricWorld(World world) {
     this.world = world;
   }
 
