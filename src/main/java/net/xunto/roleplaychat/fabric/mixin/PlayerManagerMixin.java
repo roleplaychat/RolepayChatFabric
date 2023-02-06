@@ -12,7 +12,7 @@ import net.minecraft.text.MutableText;
 import net.xunto.roleplaychat.RoleplayChatCore;
 import net.xunto.roleplaychat.fabric.FabricComponents;
 import net.xunto.roleplaychat.fabric.adapters.FabricSpeaker;
-import net.xunto.roleplaychat.fabric.framework.FabricRequest;
+import net.xunto.roleplaychat.framework.api.Request;
 import net.xunto.roleplaychat.framework.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -51,11 +51,9 @@ public abstract class PlayerManagerMixin {
 
     // Pass the chat message to the RoleplayChatCore instance for processing
     List<Text> results = RoleplayChatCore.instance.process(
-        new FabricRequest(
+        new Request(
             message.getContent().getString(),
-            new FabricSpeaker(sender),
-            message,
-            params
+            new FabricSpeaker(sender)
         )
     );
 
