@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "roleplaychat-fabric",
   "version": "${version}",
-  "name": "Roleplaychat Fabric",
+  "name": "roleplaychat-fabric",
   "description": "",
   "authors": [],
   "contact": {},
