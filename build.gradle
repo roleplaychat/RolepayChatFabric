@@ -12,7 +12,7 @@ repositories {
     }
     maven {
         name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/roleplaychat/RoleplayChatCore")
+        url = uri("https://maven.pkg.github.com/roleplaychat/roleplaychat-core")
         credentials {
             username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
             password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
@@ -81,7 +81,7 @@ publishing {
     repositories {
         maven {
             name = 'GitHubPackages'
-            url = uri('https://maven.pkg.github.com/roleplaychat/RoleplayChatFabric')
+            url = uri('https://maven.pkg.github.com/roleplaychat/roleplaychat-fabric')
             credentials {
                 username = project.findProperty('gpr.user') ?: System.getenv('USERNAME')
                 password = project.findProperty('gpr.key') ?: System.getenv('TOKEN')
