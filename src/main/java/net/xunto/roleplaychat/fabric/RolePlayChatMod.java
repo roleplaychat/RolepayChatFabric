@@ -16,8 +16,8 @@ public class RolePlayChatMod implements ModInitializer {
 
   @Override
   public void onInitialize() {
-    RoleplayChatCore.instance.warmUpRenderer();
     RoleplayChatCore.instance.setLogger(FABRIC_LOGGER);
+    RoleplayChatCore.instance.init();
 
     this.registerCommands();
   }
