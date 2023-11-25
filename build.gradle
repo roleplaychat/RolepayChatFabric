@@ -1,5 +1,6 @@
 plugins {
     id "fabric-loom" version "1.1.8"
+    id 'com.github.johnrengelman.shadow' version "8.1.1"
     id "maven-publish"
 }
 
@@ -29,7 +30,13 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "me.lucko:fabric-permissions-api:0.2-SNAPSHOT"
 
-    modImplementation "net.xunto.roleplaychat:roleplaychat-core:2.0.0-a6"
+    shadow "net.xunto.roleplaychat:roleplaychat-core:2.0.0-a6"
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+    // relocate 'original.package.name', 'new.package.name'
+    minimize()
 }
 
 processResources {
@@ -88,4 +95,12 @@ publishing {
             }
         }
     }
+}
+
+remapJar {
+    // wait until the shadowJar is done
+    dependsOn(shadowJar)
+    mustRunAfter(shadowJar)
+    // Set the input jar for the task. Here use the shadow Jar that include the .class of the transitive dependency
+    inputFile = file(shadowJar.archivePath)
 }
